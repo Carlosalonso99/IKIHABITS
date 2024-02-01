@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.NuevoHabitoActivity">
+
+    <EditText
+        android:id="@+id/editTextTituloHabito"
+        android:layout_width="428dp"
+        android:layout_height="80dp"
+        android:hint="@string/titulo_habito"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextDescripcionHabito"
+        android:layout_width="416dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/descripcion_habito"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTituloHabito" />
+
+    <Button
+        android:id="@+id/buttonGuardarHabito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:text="@string/guardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextDescripcionHabito" />
+
+    <Switch
+        android:id="@+id/switchCompletado"
+        android:layout_width="156dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="11dp"
+        android:text="Completado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescripcionHabito" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

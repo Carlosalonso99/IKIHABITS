@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">controla_tus_habitos</string>
+    <string name="habito_completado">Hábito Completado</string>
+    <string name="agregar_habito">Agregar Hábito</string>
+    <string name="titulo_habito">Título Hábito</string>
+    <string name="descripcion_habito">Descripcion Hábito</string>
+    <string name="guardar">Guardar Hábito</string>
 </resources>
