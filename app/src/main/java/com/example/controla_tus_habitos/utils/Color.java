@@ -8,9 +8,8 @@ import androidx.core.content.ContextCompat;
 
 import com.example.controla_tus_habitos.R;
 
-
-/*
-Msg: La verdad que no se si esta clase tiene mucho sentido ponerla en utils, me gustaria saber tu opinion
+/**
+ * Msg: La verdad que no se si esta clase tiene mucho sentido ponerla en utils, me gustaria saber tu opinion
  */
 public class Color {
 

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.controla_tus_habitos.model.CategoriaHabito;
 import com.example.controla_tus_habitos.model.contract.HabitoContract;
 
 /*
@@ -100,12 +101,13 @@ public class HabitoDbHelper extends SQLiteOpenHelper {
      * @param completado
      * @return
      */
-    public int actualizarHabito(long id, String titulo, String descripcion, int completado) {
+    public int actualizarHabito(long id, String titulo, String descripcion, int completado, String categoria) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(HabitoContract.HabitoEntry.COLUMN_NAME_TITULO, titulo);
         values.put(HabitoContract.HabitoEntry.COLUMN_NAME_DESCRIPCION, descripcion);
         values.put(HabitoContract.HabitoEntry.COLUMN_NAME_COMPLETADO, completado);
+        values.put(HabitoContract.HabitoEntry.COLUMN_NAME_CATEGORIA, categoria.toString());
 
         return db.update(
                 HabitoContract.HabitoEntry.TABLE_NAME,

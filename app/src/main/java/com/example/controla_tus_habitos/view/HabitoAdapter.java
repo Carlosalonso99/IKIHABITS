@@ -1,6 +1,8 @@
 package com.example.controla_tus_habitos.view;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +11,13 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.controla_tus_habitos.R;
 import com.example.controla_tus_habitos.model.Habito;
 import com.example.controla_tus_habitos.model.repository.HabitoRepository;
+import com.example.controla_tus_habitos.utils.Color;
 
 import java.util.List;
 
@@ -22,19 +26,21 @@ public class HabitoAdapter extends RecyclerView.Adapter<HabitoAdapter.HabitoView
     private static List<Habito> listaHabitos; // Asume que tienes una clase Habito
     private LayoutInflater inflater;
     private static HabitoRepository habitoRepository;
+    private OnHabitoClickListener listener;
 
     // Constructor
-    public HabitoAdapter(Context context, List<Habito> listaHabitos, HabitoRepository habitoRepository) {
+    public HabitoAdapter(Context context, List<Habito> listaHabitos, HabitoRepository habitoRepository, OnHabitoClickListener listener) {
         this.inflater = LayoutInflater.from(context);
         this.listaHabitos = listaHabitos;
         this.habitoRepository = habitoRepository;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public HabitoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.item_habito, parent, false);
-        return new HabitoViewHolder(itemView);
+        return new HabitoViewHolder(itemView, listener);
     }
 
     @Override
@@ -77,15 +83,28 @@ public class HabitoAdapter extends RecyclerView.Adapter<HabitoAdapter.HabitoView
         public ImageView iconoCategoria;
 
 
-        public HabitoViewHolder(View itemView) {
+        public HabitoViewHolder(View itemView, OnHabitoClickListener listener) {
             super(itemView);
 
             titulo = itemView.findViewById(R.id.tvHabitoTitulo);
             descripcion = itemView.findViewById(R.id.tvHabitoDescripcion);
             checkBoxCompletado = itemView.findViewById(R.id.checkBoxCompletado);
             iconoCategoria = itemView.findViewById(R.id.iconoCategoria);
+            /**
+             * TODO: gestionar color por categoria
+             */
+            //itemView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.red_warning));
 
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onHabitoClick(listaHabitos.get(position));
+                    }
+                }
+            });
 
             checkBoxCompletado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -99,6 +118,7 @@ public class HabitoAdapter extends RecyclerView.Adapter<HabitoAdapter.HabitoView
             });
 
         }
+
     }
 }
 

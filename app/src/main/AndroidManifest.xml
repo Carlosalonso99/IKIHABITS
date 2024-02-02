@@ -13,7 +13,12 @@
         android:theme="@style/Theme.Controla_tus_habitos"
         tools:targetApi="31">
         <activity
+            android:name=".view.ActualizarHabitoActivity"
+
+            android:exported="false" />
+        <activity
             android:name=".view.NuevoHabitoActivity"
+
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"

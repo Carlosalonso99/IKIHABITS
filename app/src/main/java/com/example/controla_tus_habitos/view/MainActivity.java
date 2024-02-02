@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -19,7 +20,7 @@ import com.example.controla_tus_habitos.model.repository.HabitoRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnHabitoClickListener {
 
     private RecyclerView recyclerView;
     private HabitoAdapter adapter;
@@ -73,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         actualizarListaHabitos();
+        
+        
+
+
 
         FloatingActionButton fab = findViewById(R.id.btnAgregarHabito);
         fab.setOnClickListener(view -> {
@@ -90,8 +95,20 @@ public class MainActivity extends AppCompatActivity {
      */
     private void actualizarListaHabitos() {
         List<Habito> habitos = habitoRep.obtenerTodosLosHabitos();
-        adapter = new HabitoAdapter(this, habitos, habitoRep);
+        adapter = new HabitoAdapter(this, habitos, habitoRep, this);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onHabitoClick(Habito habito) {
+        Intent intent = new Intent(MainActivity.this, ActualizarHabitoActivity.class);
+        intent.putExtra("id", habito.getId());
+        intent.putExtra("titulo", habito.getTitulo());
+        intent.putExtra("descripcion", habito.getDescripcion());
+        intent.putExtra("completado", habito.isCompletado());
+        intent.putExtra("categoria", habito.getCategoria());
+        nuevoHabitoLauncher.launch(intent);
+
     }
 }
 
