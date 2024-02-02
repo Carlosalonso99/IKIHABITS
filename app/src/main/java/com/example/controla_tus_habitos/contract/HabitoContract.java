@@ -11,6 +11,8 @@ public final class HabitoContract {
         public static final String COLUMN_NAME_TITULO = "titulo";
         public static final String COLUMN_NAME_DESCRIPCION = "descripcion";
         public static final String COLUMN_NAME_COMPLETADO = "completado";
+        public static final String COLUMN_NAME_CATEGORIA = "categoria";
+
     }
 }
 

@@ -1,11 +1,13 @@
 package com.example.controla_tus_habitos.view;
 
 import android.content.Context;
+import android.graphics.drawable.Icon;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +45,20 @@ public class HabitoAdapter extends RecyclerView.Adapter<HabitoAdapter.HabitoView
         holder.titulo.setText(habitoActual.getTitulo());
         holder.descripcion.setText(habitoActual.getDescripcion());
         holder.checkBoxCompletado.setChecked(habitoActual.isCompletado());
+        switch (habitoActual.getCategoria()) {
+            case ALIMENTACION:
+                holder.iconoCategoria.setImageResource(R.drawable.icono_alimentacion);
+                break;
+            case DEPORTE:
+                holder.iconoCategoria.setImageResource(R.drawable.icono_deporte);
+                break;
+            case TRABAJO:
+                holder.iconoCategoria.setImageResource(R.drawable.icono_trabajo);
+                break;
+            case GENERICO:
+                holder.iconoCategoria.setImageResource(R.drawable.icono_generico);
+                break;
+        }
 
     }
 
@@ -52,20 +68,26 @@ public class HabitoAdapter extends RecyclerView.Adapter<HabitoAdapter.HabitoView
     }
 
 
+    /**
+     * ViewHolder personalizado(patron para trabajar mas comodo)
+     */
 
-
-    // ViewHolder personalizado(patron para trabajar mas comodo)
     public static class HabitoViewHolder extends RecyclerView.ViewHolder {
         public TextView titulo;
         public TextView descripcion;
         public CheckBox checkBoxCompletado;
+        public ImageView iconoCategoria;
 
 
         public HabitoViewHolder(View itemView) {
             super(itemView);
+
             titulo = itemView.findViewById(R.id.tvHabitoTitulo);
             descripcion = itemView.findViewById(R.id.tvHabitoDescripcion);
             checkBoxCompletado = itemView.findViewById(R.id.checkBoxCompletado);
+            iconoCategoria = itemView.findViewById(R.id.iconoCategoria);
+
+
 
             checkBoxCompletado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override

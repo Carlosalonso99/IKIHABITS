@@ -6,13 +6,16 @@ public class Habito {
     private String descripcion;
     private boolean completado;
 
+    private CategoriaHabito categoria;
+
     public Habito() {}
 
-    public Habito(long id, String titulo, String descripcion, boolean completado) {
+    public Habito(long id, String titulo, String descripcion, boolean completado, CategoriaHabito categoria) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.completado = completado;
+        this.categoria = categoria;
     }
 
     public long getId() {
@@ -45,6 +48,14 @@ public class Habito {
 
     public void setCompletado(boolean completado) {
         this.completado = completado;
+    }
+
+    public CategoriaHabito getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaHabito categoria) {
+        this.categoria = categoria;
     }
 }
 

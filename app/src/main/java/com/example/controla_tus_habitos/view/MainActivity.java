@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private HabitoRepository habitoRep;
 
+    /**
+     * Es una manera de gestionar la activiti para que se actualice bajo la llamada de NuevoHabitoActivity si todo sale bien
+     */
     private final ActivityResultLauncher<Intent> nuevoHabitoLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -54,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*
-    Recargar la lista de hábitos desde la base de datos
+    /**
+     * Recargar la lista de hábitos desde la base de datos
      */
     private void actualizarListaHabitos() {
         List<Habito> habitos = habitoRep.obtenerTodosLosHabitos();
