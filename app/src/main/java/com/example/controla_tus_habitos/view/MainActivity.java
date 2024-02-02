@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.CheckBox;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -17,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.controla_tus_habitos.R;
 import com.example.controla_tus_habitos.model.Habito;
-import com.example.controla_tus_habitos.repository.HabitoRepository;
+import com.example.controla_tus_habitos.model.repository.HabitoRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 

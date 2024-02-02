@@ -1,10 +1,9 @@
-package com.example.controla_tus_habitos.repository;
+package com.example.controla_tus_habitos.model.repository;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
-import com.example.controla_tus_habitos.contract.HabitoContract;
+import com.example.controla_tus_habitos.model.contract.HabitoContract;
 import com.example.controla_tus_habitos.model.CategoriaHabito;
 import com.example.controla_tus_habitos.model.Habito;
 

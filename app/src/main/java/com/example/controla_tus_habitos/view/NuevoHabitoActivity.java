@@ -1,8 +1,6 @@
 package com.example.controla_tus_habitos.view;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.controla_tus_habitos.R;
 import com.example.controla_tus_habitos.model.CategoriaHabito;
-import com.example.controla_tus_habitos.repository.HabitoDbHelper;
+import com.example.controla_tus_habitos.model.repository.HabitoDbHelper;
 
 public class NuevoHabitoActivity extends AppCompatActivity {
 

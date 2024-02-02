@@ -1,7 +1,6 @@
 package com.example.controla_tus_habitos.view;
 
 import android.content.Context;
-import android.graphics.drawable.Icon;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.controla_tus_habitos.R;
 import com.example.controla_tus_habitos.model.Habito;
-import com.example.controla_tus_habitos.repository.HabitoDbHelper;
-import com.example.controla_tus_habitos.repository.HabitoRepository;
+import com.example.controla_tus_habitos.model.repository.HabitoRepository;
 
 import java.util.List;
 

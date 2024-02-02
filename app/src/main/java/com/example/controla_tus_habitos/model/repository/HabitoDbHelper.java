@@ -1,13 +1,12 @@
-package com.example.controla_tus_habitos.repository;
+package com.example.controla_tus_habitos.model.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
-import com.example.controla_tus_habitos.contract.HabitoContract;
+import com.example.controla_tus_habitos.model.contract.HabitoContract;
 
 /*
 Implementa un singleton para que todas las acciones crud sean ejecutadas por el mismo objeto aporta eficiencia y coherencia a la arquitectura

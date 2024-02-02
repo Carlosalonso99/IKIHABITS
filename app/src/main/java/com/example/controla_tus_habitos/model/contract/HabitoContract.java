@@ -1,4 +1,4 @@
-package com.example.controla_tus_habitos.contract;
+package com.example.controla_tus_habitos.model.contract;
 
 import android.provider.BaseColumns;
 
