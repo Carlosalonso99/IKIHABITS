@@ -13,6 +13,8 @@ import java.util.List;
 
 /*
 Hago esta clase para que haya cuan menos dependencia posible entre la base de datos y mi app , por si la paso a firebase
+
+Esta clase es la que actua como view model , pero esta implementada por mi
  */
 public class HabitoRepository {
     private static HabitoRepository instance;
@@ -99,9 +101,8 @@ public class HabitoRepository {
 
             dbHelper.actualizarEstadoCompletado(id, completadoInt);
     }
-
-
-
-
+    public long actualizarHabito(Long idHabito, String tituloContent,String descripcionContent, int completadoValue, String categoriaContent){
+        return dbHelper.actualizarHabito(idHabito, tituloContent, descripcionContent, completadoValue, categoriaContent);
+    }
 }
 
