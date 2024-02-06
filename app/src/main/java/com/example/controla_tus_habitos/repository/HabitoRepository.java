@@ -1,10 +1,11 @@
-package com.example.controla_tus_habitos.model.repository;
+package com.example.controla_tus_habitos.repository;
 
 import android.content.Context;
 import android.database.Cursor;
 
+import com.example.controla_tus_habitos.model.HabitoDbHelper;
 import com.example.controla_tus_habitos.model.contract.HabitoContract;
-import com.example.controla_tus_habitos.model.CategoriaHabito;
+import com.example.controla_tus_habitos.model.CategoriaHabitoEnum;
 import com.example.controla_tus_habitos.model.Habito;
 
 import java.util.ArrayList;
@@ -70,12 +71,12 @@ public class HabitoRepository {
                 String categoriaStr = cursor.getString(cursor.getColumnIndexOrThrow(HabitoContract.HabitoEntry.COLUMN_NAME_CATEGORIA));
                 boolean completado = (completadoInt == 1);
 
-                CategoriaHabito categoria ;
+                CategoriaHabitoEnum categoria ;
 
                 if (categoriaStr != null) {
-                    categoria = CategoriaHabito.valueOf(categoriaStr.toUpperCase());
+                    categoria = CategoriaHabitoEnum.valueOf(categoriaStr.toUpperCase());
                 } else {
-                    categoria = CategoriaHabito.GENERICO;
+                    categoria = CategoriaHabitoEnum.GENERICO;
                 }
 
 
@@ -101,8 +102,16 @@ public class HabitoRepository {
 
             dbHelper.actualizarEstadoCompletado(id, completadoInt);
     }
+
+    public long agregarHabito(String tituloContent,String descripcionContent, int completadoValue, String categoriaContent){
+        return dbHelper.agregarHabito(tituloContent, descripcionContent, completadoValue, categoriaContent);
+    }
     public long actualizarHabito(Long idHabito, String tituloContent,String descripcionContent, int completadoValue, String categoriaContent){
         return dbHelper.actualizarHabito(idHabito, tituloContent, descripcionContent, completadoValue, categoriaContent);
+    }
+
+    public boolean eliminarHabito(Long id) {
+         return dbHelper.eliminarHabito(id);
     }
 }
 

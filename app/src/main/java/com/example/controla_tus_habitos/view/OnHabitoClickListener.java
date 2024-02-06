@@ -8,4 +8,5 @@ import com.example.controla_tus_habitos.model.Habito;
  */
 public interface OnHabitoClickListener {
     void onHabitoClick(Habito habito);
+    void onHabitoLongClick(Habito habito);
 }

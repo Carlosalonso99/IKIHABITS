@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="theme1">#96DFE6</color>
+    <color name="theme2">#49D8E6</color>
+    <color name="alimentacion_cat">#A6F565</color>
+    <color name="generico_cat">#E3AC97</color>
+    <color name="trabajo_cat">#FCF58C</color>
+    <color name="deporte_cat">#DBA54D</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red_warning">#D64B4B</color>
     <color name="shadow">#46000000</color>
+
 </resources>

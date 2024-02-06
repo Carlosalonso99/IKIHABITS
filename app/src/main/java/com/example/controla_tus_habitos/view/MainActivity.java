@@ -1,22 +1,23 @@
 package com.example.controla_tus_habitos.view;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.controla_tus_habitos.R;
 import com.example.controla_tus_habitos.model.Habito;
-import com.example.controla_tus_habitos.model.repository.HabitoRepository;
+import com.example.controla_tus_habitos.repository.HabitoRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
@@ -110,5 +111,38 @@ public class MainActivity extends AppCompatActivity implements OnHabitoClickList
         nuevoHabitoLauncher.launch(intent);
 
     }
+
+    public void onHabitoLongClick(Habito habito) {
+        confirmarBorrarHaito(habito);
+    }
+
+    public void confirmarBorrarHaito(Habito habito) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Confirmar acción");
+        builder.setMessage("¿Estás seguro de que quieres borrar este hábito?");
+
+        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if(habitoRep.eliminarHabito(habito.getId())) {
+                    actualizarListaHabitos();
+                    Toast.makeText(MainActivity.this, "Habito borrado correctamente", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(MainActivity.this, "No se borro correctamente", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 }
 

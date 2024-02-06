@@ -1,8 +1,6 @@
 package com.example.controla_tus_habitos.view;
 
 import android.content.Context;
-import android.content.Intent;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +9,11 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.controla_tus_habitos.R;
 import com.example.controla_tus_habitos.model.Habito;
-import com.example.controla_tus_habitos.model.repository.HabitoRepository;
-import com.example.controla_tus_habitos.utils.Color;
+import com.example.controla_tus_habitos.repository.HabitoRepository;
 
 import java.util.List;
 
@@ -93,7 +89,9 @@ public class HabitoAdapter extends RecyclerView.Adapter<HabitoAdapter.HabitoView
             /**
              * TODO: gestionar color por categoria
              */
-            //itemView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.red_warning));
+
+
+
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +101,17 @@ public class HabitoAdapter extends RecyclerView.Adapter<HabitoAdapter.HabitoView
                     if (position != RecyclerView.NO_POSITION) {
                         listener.onHabitoClick(listaHabitos.get(position));
                     }
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onHabitoLongClick(listaHabitos.get(position));
+                    }
+                    return false;
                 }
             });
 

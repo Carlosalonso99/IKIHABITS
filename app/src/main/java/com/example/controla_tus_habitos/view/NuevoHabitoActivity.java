@@ -9,21 +9,23 @@ import android.widget.Switch;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.controla_tus_habitos.R;
-import com.example.controla_tus_habitos.model.CategoriaHabito;
-import com.example.controla_tus_habitos.model.Habito;
-import com.example.controla_tus_habitos.model.repository.HabitoDbHelper;
+import com.example.controla_tus_habitos.model.CategoriaHabitoEnum;
+import com.example.controla_tus_habitos.model.HabitoDbHelper;
+import com.example.controla_tus_habitos.repository.HabitoRepository;
 import com.example.controla_tus_habitos.utils.Color;
 
 public class NuevoHabitoActivity extends AppCompatActivity {
+
+    HabitoRepository rep = HabitoRepository.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuevo_habito);
-        HabitoDbHelper dbHelper = HabitoDbHelper.getInstance(this);
+
         Spinner spinnerCategoria = findViewById(R.id.spinnerCategoria);
         // Asume que CategoriaHabito es tu enum y tiene los valores SALUD, TRABAJO, ALIMENTACION
-        spinnerCategoria.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, CategoriaHabito.values()));
+        spinnerCategoria.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, CategoriaHabitoEnum.values()));
 
 
 
@@ -34,7 +36,7 @@ public class NuevoHabitoActivity extends AppCompatActivity {
             EditText descripcionHabito = findViewById(R.id.editTextDescripcionHabito);
             String descripcionContent = descripcionHabito.getText().toString();
             Switch completado = findViewById(R.id.switchCompletado);
-            CategoriaHabito categoriaSeleccionada = (CategoriaHabito) spinnerCategoria.getSelectedItem();
+            CategoriaHabitoEnum categoriaSeleccionada = (CategoriaHabitoEnum) spinnerCategoria.getSelectedItem();
             String categoriaContent = categoriaSeleccionada.toString();
 
             int completadoValue = completado.isChecked() ? 1 : 0;
@@ -45,7 +47,7 @@ public class NuevoHabitoActivity extends AppCompatActivity {
                 Toast.makeText(NuevoHabitoActivity.this, "Título necesario", Toast.LENGTH_SHORT).show();
                 Color.errorAnimation(this, tituloHabito);
             } else {
-                long nuevoId = dbHelper.agregarHabito(tituloContent, descripcionContent, completadoValue, categoriaContent);
+                long nuevoId = rep.agregarHabito(tituloContent, descripcionContent, completadoValue, categoriaContent);
                 if (nuevoId != -1) {
                     Toast.makeText(NuevoHabitoActivity.this, "Hábito agregado exitosamente", Toast.LENGTH_SHORT).show();
                     setResult(RESULT_OK); // Indica que funciono y activa actualizarHabitos() en la mainAct

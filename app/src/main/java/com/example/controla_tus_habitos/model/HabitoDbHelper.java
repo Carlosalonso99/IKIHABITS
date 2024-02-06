@@ -1,4 +1,4 @@
-package com.example.controla_tus_habitos.model.repository;
+package com.example.controla_tus_habitos.model;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.controla_tus_habitos.model.CategoriaHabito;
 import com.example.controla_tus_habitos.model.contract.HabitoContract;
 
 /*
@@ -140,9 +139,9 @@ public class HabitoDbHelper extends SQLiteOpenHelper {
      * Elimina un habito
      * @param id
      */
-    public void eliminarHabito(long id) {
+    public boolean eliminarHabito(long id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(HabitoContract.HabitoEntry.TABLE_NAME, HabitoContract.HabitoEntry._ID + " = ?", new String[]{String.valueOf(id)});
+        return db.delete(HabitoContract.HabitoEntry.TABLE_NAME, HabitoContract.HabitoEntry._ID + " = ?", new String[]{String.valueOf(id)}) == 1;
     }
 }
 
