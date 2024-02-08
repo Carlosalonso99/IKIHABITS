@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "971055975337",
+    "project_id": "proyectoandroid-c22b6",
+    "storage_bucket": "proyectoandroid-c22b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971055975337:android:4a4020c1cd4b595ac892b8",
+        "android_client_info": {
+          "package_name": "com.example.controla_tus_habitos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVb4Ke2TboF6MvIIXlN_ClaXyMnYuKiMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
