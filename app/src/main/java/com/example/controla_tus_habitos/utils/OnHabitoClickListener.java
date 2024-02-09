@@ -1,4 +1,4 @@
-package com.example.controla_tus_habitos.view;
+package com.example.controla_tus_habitos.utils;
 
 import com.example.controla_tus_habitos.model.Habito;
 

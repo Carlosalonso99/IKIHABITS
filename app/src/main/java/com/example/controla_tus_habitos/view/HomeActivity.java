@@ -18,10 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.controla_tus_habitos.R;
 import com.example.controla_tus_habitos.model.Habito;
 import com.example.controla_tus_habitos.repository.HabitoRepository;
+import com.example.controla_tus_habitos.utils.OnHabitoClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnHabitoClickListener {
+public class HomeActivity extends AppCompatActivity implements OnHabitoClickListener {
 
     private RecyclerView recyclerView;
     private HabitoAdapter adapter;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements OnHabitoClickList
 
         FloatingActionButton fab = findViewById(R.id.btnAgregarHabito);
         fab.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, NuevoHabitoActivity.class);
+            Intent intent = new Intent(HomeActivity.this, NuevoHabitoActivity.class);
             nuevoHabitoLauncher.launch(intent);
         });
 
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements OnHabitoClickList
 
     @Override
     public void onHabitoClick(Habito habito) {
-        Intent intent = new Intent(MainActivity.this, ActualizarHabitoActivity.class);
+        Intent intent = new Intent(HomeActivity.this, ActualizarHabitoActivity.class);
         intent.putExtra("id", habito.getId());
         intent.putExtra("titulo", habito.getTitulo());
         intent.putExtra("descripcion", habito.getDescripcion());
@@ -126,10 +127,10 @@ public class MainActivity extends AppCompatActivity implements OnHabitoClickList
             public void onClick(DialogInterface dialog, int id) {
                 if(habitoRep.eliminarHabito(habito.getId())) {
                     actualizarListaHabitos();
-                    Toast.makeText(MainActivity.this, "Habito borrado correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, "Habito borrado correctamente", Toast.LENGTH_SHORT).show();
 
                 }else{
-                    Toast.makeText(MainActivity.this, "No se borro correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, "No se borro correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });

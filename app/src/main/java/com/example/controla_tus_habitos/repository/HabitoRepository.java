@@ -52,7 +52,7 @@ public class HabitoRepository {
         return listaHabitos;
     }
 
-    /**
+     /**
      * Pasa de los datos obtenidos de la bd a una lista de java
      * @param cursor
      * @return devuelva una lista de habitos

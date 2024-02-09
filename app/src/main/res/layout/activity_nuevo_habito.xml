@@ -31,16 +31,17 @@
         android:id="@+id/buttonGuardarHabito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="117dp"
         android:text="@string/guardar"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextDescripcionHabito" />
+        app:layout_constraintTop_toBottomOf="@+id/switchCompletado" />
 
     <Switch
         android:id="@+id/switchCompletado"
-        android:layout_width="156dp"
-        android:layout_height="38dp"
+        android:layout_width="197dp"
+        android:layout_height="64dp"
         android:layout_marginTop="11dp"
         android:text="Completado"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,8 +50,8 @@
 
     <Spinner
         android:id="@+id/spinnerCategoria"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
+        android:layout_width="407dp"
+        android:layout_height="66dp"
         android:layout_marginTop="19dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonGuardarHabito"
         app:layout_constraintEnd_toEndOf="parent"

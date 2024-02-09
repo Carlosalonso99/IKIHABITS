@@ -14,13 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.controla_tus_habitos.R;
 import com.example.controla_tus_habitos.model.CategoriaHabitoEnum;
-import com.example.controla_tus_habitos.model.HabitoDbHelper;
 import com.example.controla_tus_habitos.repository.HabitoRepository;
 import com.example.controla_tus_habitos.utils.Color;
 
 public class ActualizarHabitoActivity extends AppCompatActivity {
 
-    HabitoRepository rep = HabitoRepository.getInstance(this);
+    HabitoRepository habitoRep = HabitoRepository.getInstance(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,12 +73,12 @@ public class ActualizarHabitoActivity extends AppCompatActivity {
                 Toast.makeText(ActualizarHabitoActivity.this, "Título necesario", Toast.LENGTH_SHORT).show();
                 Color.errorAnimation(this, tituloHabito);
             } else {
-                long nuevoId = rep.actualizarHabito(idHabito, tituloContent, descripcionContent, completadoValue, categoriaContent);
+                long nuevoId = habitoRep.actualizarHabito(idHabito, tituloContent, descripcionContent, completadoValue, categoriaContent);
 
                 if (nuevoId != -1) {
                     Toast.makeText(ActualizarHabitoActivity.this, "Hábito agregado exitosamente", Toast.LENGTH_SHORT).show();
-                    setResult(RESULT_OK); // Indica que funciono y activa actualizarHabitos() en la mainAct
-                    finish(); // Cierra la actividad y regresa a MainActivity
+                    setResult(RESULT_OK); //Indica que funciono y activa actualizarHabitos() en la mainAct
+                    finish(); //Cierra la actividad y regresa a MainActivity
                 } else {
                     Toast.makeText(ActualizarHabitoActivity.this, "Error al agregar hábito", Toast.LENGTH_SHORT).show();
                 }
