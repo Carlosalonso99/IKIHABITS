@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.controla_tus_habitos.model.contract.AudioContract;
 import com.example.controla_tus_habitos.model.contract.HabitoContract;
-import com.example.controla_tus_habitos.model.entities_pojos.Audio;
+import com.example.controla_tus_habitos.model.entities_pojos.audio.Audio;
 
 import java.util.ArrayList;
 import java.util.List;

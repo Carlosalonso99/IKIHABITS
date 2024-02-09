@@ -1,4 +1,4 @@
-package com.example.controla_tus_habitos.model.entities_pojos;
+package com.example.controla_tus_habitos.model.entities_pojos.audio;
 
 public class Audio {
     private long id;
