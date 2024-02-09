@@ -1,4 +1,6 @@
-package com.example.controla_tus_habitos.model;
+package com.example.controla_tus_habitos.model.entities_pojos;
+
+import com.example.controla_tus_habitos.model.CategoriaHabitoEnum;
 
 public class Habito {
     private long id;
