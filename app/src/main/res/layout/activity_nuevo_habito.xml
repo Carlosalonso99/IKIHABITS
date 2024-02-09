@@ -80,4 +80,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/spinnerCategoria" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAudios"
+        android:layout_width="415dp"
+        android:layout_height="278dp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonGuardarHabito" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

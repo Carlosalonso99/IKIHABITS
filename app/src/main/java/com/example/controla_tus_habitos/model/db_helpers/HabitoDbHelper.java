@@ -207,7 +207,6 @@ public class HabitoDbHelper extends SQLiteOpenHelper {
                 null
         );
 
-        cursor.close();
         return cursor;
     }
 

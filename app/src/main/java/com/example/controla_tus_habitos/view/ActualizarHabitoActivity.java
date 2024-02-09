@@ -2,6 +2,7 @@
 package com.example.controla_tus_habitos.view;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
@@ -19,12 +20,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.controla_tus_habitos.R;
 import com.example.controla_tus_habitos.model.entities_pojos.audio.Audio;
 import com.example.controla_tus_habitos.model.entities_pojos.habito.CategoriaHabitoEnum;
 import com.example.controla_tus_habitos.repository.HabitoRepository;
 import com.example.controla_tus_habitos.utils.Color;
+import com.example.controla_tus_habitos.view.adapters.AudioListAdapter;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -40,6 +44,9 @@ public class ActualizarHabitoActivity extends AppCompatActivity {
     private boolean isRecording = false; // Estado de la grabación
     private MediaRecorder mediaRecorder;
     private List<String> audioFilePath = new LinkedList<String>();
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView recyclerViewAudios;
+    private AudioListAdapter audioListAdapter;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -52,6 +59,7 @@ public class ActualizarHabitoActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +104,16 @@ public class ActualizarHabitoActivity extends AppCompatActivity {
         completado.setChecked(intent.getBooleanExtra("completado", false));
 
         Long idHabito = intent.getLongExtra("id", 0);
+
+        recyclerViewAudios = findViewById(R.id.recyclerViewAudios);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerViewAudios.setLayoutManager(layoutManager);
+
+        List<Audio> listaAudios = obtenerListaAudios(idHabito);
+        audioListAdapter = new AudioListAdapter(this, listaAudios);
+        recyclerViewAudios.setAdapter(audioListAdapter);
+
+
 
         Button grabarBtn = findViewById(R.id.btnGrabar);
 
@@ -184,5 +202,10 @@ public class ActualizarHabitoActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private List<Audio> obtenerListaAudios(Long idHabito) {
+
+        return habitoRep.obtenerAudiosDeHabitoId(idHabito);
     }
 }
