@@ -1,4 +1,4 @@
-package com.example.controla_tus_habitos.view;
+package com.example.controla_tus_habitos.view.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

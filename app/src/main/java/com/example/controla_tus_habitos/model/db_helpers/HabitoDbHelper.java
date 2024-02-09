@@ -1,4 +1,4 @@
-package com.example.controla_tus_habitos.model;
+package com.example.controla_tus_habitos.model.db_helpers;
 
 import android.content.ContentValues;
 import android.content.Context;

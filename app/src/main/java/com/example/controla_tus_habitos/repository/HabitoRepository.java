@@ -3,7 +3,7 @@ package com.example.controla_tus_habitos.repository;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.controla_tus_habitos.model.HabitoDbHelper;
+import com.example.controla_tus_habitos.model.db_helpers.HabitoDbHelper;
 import com.example.controla_tus_habitos.model.contract.AudioContract;
 import com.example.controla_tus_habitos.model.contract.HabitoContract;
 import com.example.controla_tus_habitos.model.entities_pojos.habito.CategoriaHabitoEnum;
