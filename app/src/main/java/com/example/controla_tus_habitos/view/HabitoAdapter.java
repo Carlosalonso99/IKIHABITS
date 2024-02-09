@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.controla_tus_habitos.R;
-import com.example.controla_tus_habitos.model.Habito;
+import com.example.controla_tus_habitos.model.entities_pojos.habito.Habito;
 import com.example.controla_tus_habitos.repository.HabitoRepository;
 import com.example.controla_tus_habitos.utils.OnHabitoClickListener;
 

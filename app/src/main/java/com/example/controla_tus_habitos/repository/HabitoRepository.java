@@ -4,9 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.example.controla_tus_habitos.model.HabitoDbHelper;
+import com.example.controla_tus_habitos.model.contract.AudioContract;
 import com.example.controla_tus_habitos.model.contract.HabitoContract;
-import com.example.controla_tus_habitos.model.CategoriaHabitoEnum;
-import com.example.controla_tus_habitos.model.Habito;
+import com.example.controla_tus_habitos.model.entities_pojos.habito.CategoriaHabitoEnum;
+import com.example.controla_tus_habitos.model.entities_pojos.habito.Habito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,11 +108,26 @@ public class HabitoRepository {
         return dbHelper.agregarHabito(tituloContent, descripcionContent, completadoValue, categoriaContent);
     }
     public long actualizarHabito(Long idHabito, String tituloContent,String descripcionContent, int completadoValue, String categoriaContent){
-        return dbHelper.actualizarHabito(idHabito, tituloContent, descripcionContent, completadoValue, categoriaContent);
+        dbHelper.actualizarHabito(idHabito, tituloContent, descripcionContent, completadoValue, categoriaContent);
+        return idHabito;
     }
 
     public boolean eliminarHabito(Long id) {
          return dbHelper.eliminarHabito(id);
+    }
+
+    public void agregarAudioAHabito(long habitoId, String audioPath) {
+        dbHelper.agregarAudio(habitoId, audioPath);
+    }
+    public List<String> obtenerAudiosDeHabitoId(long habitoId) {
+        Cursor cursor = dbHelper.obtenerAudiosDeHabitoId(habitoId);
+        List<String> audioPaths = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            String audioPath = cursor.getString(cursor.getColumnIndexOrThrow(AudioContract.AudioEntry.COLUMN_NAME_AUDIO_PATH));
+            audioPaths.add(audioPath);
+        }
+        cursor.close();
+        return audioPaths;
     }
 }
 

@@ -1,6 +1,6 @@
 package com.example.controla_tus_habitos.utils;
 
-import com.example.controla_tus_habitos.model.Habito;
+import com.example.controla_tus_habitos.model.entities_pojos.habito.Habito;
 
 /**
  * Interfaz para manejar clics en ítems del RecyclerView

@@ -6,7 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.controla_tus_habitos.model.contract.AudioContract;
 import com.example.controla_tus_habitos.model.contract.HabitoContract;
+import com.example.controla_tus_habitos.model.entities_pojos.Audio;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /*
 Implementa un singleton para que todas las acciones crud sean ejecutadas por el mismo objeto aporta eficiencia y coherencia a la arquitectura
@@ -15,14 +20,24 @@ public class HabitoDbHelper extends SQLiteOpenHelper {
 
     private static HabitoDbHelper instance;
     private static final String DATABASE_NAME = "habitos.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 6;
     final static String SQL_CREATE_HABITOS_TABLE =
             "CREATE TABLE " + HabitoContract.HabitoEntry.TABLE_NAME + " (" +
                     HabitoContract.HabitoEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     HabitoContract.HabitoEntry.COLUMN_NAME_TITULO + " TEXT NOT NULL," +
                     HabitoContract.HabitoEntry.COLUMN_NAME_DESCRIPCION + " TEXT," +
                     HabitoContract.HabitoEntry.COLUMN_NAME_COMPLETADO + " INTEGER NOT NULL," +
-                    HabitoContract.HabitoEntry.COLUMN_NAME_CATEGORIA + " TEXT" + ")";;
+                    HabitoContract.HabitoEntry.COLUMN_NAME_CATEGORIA + " TEXT)";
+
+    private static final String SQL_CREATE_AUDIOS_TABLE =
+            "CREATE TABLE " + AudioContract.AudioEntry.TABLE_NAME + " (" +
+                    AudioContract.AudioEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    AudioContract.AudioEntry.COLUMN_NAME_HABITO_ID + " INTEGER," +
+                    AudioContract.AudioEntry.COLUMN_NAME_AUDIO_PATH + " TEXT," +
+                    "FOREIGN KEY (" + AudioContract.AudioEntry.COLUMN_NAME_HABITO_ID + ") REFERENCES " +
+                    HabitoContract.HabitoEntry.TABLE_NAME + " (" + HabitoContract.HabitoEntry._ID + "))";
+
+
 
     /**
      * Implementacion de un Singleton para mayor control
@@ -35,22 +50,49 @@ public class HabitoDbHelper extends SQLiteOpenHelper {
 
     public static synchronized HabitoDbHelper getInstance(Context context) {
         if (instance == null) {
-            // Usa getApplicationContext() para evitar fugas de memoria
             instance = new HabitoDbHelper(context.getApplicationContext());
         }
         return instance;
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {db.execSQL(SQL_CREATE_HABITOS_TABLE);}
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(SQL_CREATE_HABITOS_TABLE);
+        db.execSQL(SQL_CREATE_HABITOS_TABLE);
+    }
 
+    /**
+     * Sirve para gestionar las versiones de la base de datos
+     * @param db The database.
+     * @param oldVersion The old database version.
+     * @param newVersion The new database version.
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Aqui se gestionan las actualizaciones de version
         if (oldVersion < 2) {
             db.execSQL("ALTER TABLE " + HabitoContract.HabitoEntry.TABLE_NAME + " ADD COLUMN " + HabitoContract.HabitoEntry.COLUMN_NAME_CATEGORIA + " TEXT");
         }
+        //En la 3,4y5 tuye un error
+        if(oldVersion < 6){
+            db.execSQL(SQL_CREATE_AUDIOS_TABLE);
+        }
+
     }
+
+    /**
+     * Cada vez que se habre la bd , se ejecuta "b.execSQL("PRAGMA foreign_keys=ON;");" para permitir gestionar FK a SQLite
+     * @param db The database.
+     */
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if (!db.isReadOnly()) {
+            // Habilitar el soporte de clave foránea
+            db.execSQL("PRAGMA foreign_keys=ON;");
+        }
+    }
+
 
     // CRUD
 
@@ -143,5 +185,32 @@ public class HabitoDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(HabitoContract.HabitoEntry.TABLE_NAME, HabitoContract.HabitoEntry._ID + " = ?", new String[]{String.valueOf(id)}) == 1;
     }
+    public void agregarAudio(long habitoId, String audioPath) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(AudioContract.AudioEntry.COLUMN_NAME_HABITO_ID, habitoId);
+        values.put(AudioContract.AudioEntry.COLUMN_NAME_AUDIO_PATH, audioPath);
+
+        db.insert(AudioContract.AudioEntry.TABLE_NAME, null, values);
+        db.close();
+    }
+    public Cursor obtenerAudiosDeHabitoId(long habitoId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Audio> audios = new ArrayList<>();
+        Cursor cursor = db.query(
+                AudioContract.AudioEntry.TABLE_NAME,
+                new String[] {AudioContract.AudioEntry._ID, AudioContract.AudioEntry.COLUMN_NAME_HABITO_ID, AudioContract.AudioEntry.COLUMN_NAME_AUDIO_PATH},
+                AudioContract.AudioEntry.COLUMN_NAME_HABITO_ID + " = ?",
+                new String[] {String.valueOf(habitoId)},
+                null,
+                null,
+                null
+        );
+
+        cursor.close();
+        return cursor;
+    }
+
+
 }
 
