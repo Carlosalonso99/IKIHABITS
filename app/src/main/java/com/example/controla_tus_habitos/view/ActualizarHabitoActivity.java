@@ -28,7 +28,7 @@ import com.example.controla_tus_habitos.model.entities_pojos.audio.Audio;
 import com.example.controla_tus_habitos.model.entities_pojos.habito.CategoriaHabitoEnum;
 import com.example.controla_tus_habitos.repository.HabitoRepository;
 import com.example.controla_tus_habitos.utils.Color;
-import com.example.controla_tus_habitos.view.adapters.AudioListAdapter;
+import com.example.controla_tus_habitos.view.adapters.AudioAdapter;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -46,7 +46,7 @@ public class ActualizarHabitoActivity extends AppCompatActivity {
     private List<String> audioFilePath = new LinkedList<String>();
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerViewAudios;
-    private AudioListAdapter audioListAdapter;
+    private AudioAdapter audioListAdapter;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -110,7 +110,7 @@ public class ActualizarHabitoActivity extends AppCompatActivity {
         recyclerViewAudios.setLayoutManager(layoutManager);
 
         List<Audio> listaAudios = obtenerListaAudios(idHabito);
-        audioListAdapter = new AudioListAdapter(this, listaAudios);
+        audioListAdapter = new AudioAdapter(this, listaAudios);
         recyclerViewAudios.setAdapter(audioListAdapter);
 
 
