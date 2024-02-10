@@ -2,7 +2,6 @@
 package com.example.controla_tus_habitos.view;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
@@ -59,7 +58,7 @@ public class ActualizarHabitoActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
