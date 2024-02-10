@@ -18,7 +18,7 @@ public class UserManagerService {
     static FirebaseAuth firebaseAuth =  FirebaseAuth.getInstance();
 
     /**
-     * metodo para registrar un usuario con  el ervicio de firebase
+     * metodo para registrar un usuario con  el servicio de firebase
      * @param email
      * @param password
      * @return hace un callback para gestionarlo de manera sincrona
@@ -35,7 +35,7 @@ public class UserManagerService {
     }
 
     /**
-     * metodo para logear a un usuario con  el ervicio de firebase
+     * metodo para logear a un usuario con  el servicio de firebase
      * @param email
      * @param password
      * @return hace un callback para gestionarlo de manera sincrona
