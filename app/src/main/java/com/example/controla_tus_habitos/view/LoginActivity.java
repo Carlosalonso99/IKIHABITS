@@ -1,9 +1,11 @@
 package com.example.controla_tus_habitos.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +20,11 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        boolean isDarkMode = PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean("dark_mode", false);
+        AppCompatDelegate.setDefaultNightMode(isDarkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 

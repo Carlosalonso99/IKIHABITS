@@ -2,16 +2,22 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <item
         android:id="@+id/itemHome"
         android:title="@string/home"
         android:orderInCategory="100"
         android:icon="@drawable/icono_home"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:background="@drawable/borde_personalizado"/>
+
     <item
-        android:id="@+id/itemConfiguracion"
-        android:title="@string/home"
-        android:orderInCategory="100"
-        android:icon="@drawable/icono_configuracion"
-        app:showAsAction="ifRoom"/>
+        android:id="@+id/dark_mode_switch"
+        android:orderInCategory="101"
+        android:title="Switch"
+        app:actionLayout="@layout/switch_item"
+        app:showAsAction="ifRoom"
+        android:background="@drawable/borde_personalizado"/>
+
+
 </menu>

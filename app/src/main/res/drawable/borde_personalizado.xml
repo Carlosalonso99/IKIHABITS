@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:shape="rectangle"
     tools:ignore="ExtraText">
-    <solid android:color="#FFFFFF" /> <!-- Color de fondo -->
+    <solid android:color="@color/white" /> <!-- Color de fondo -->
     <stroke
 
         android:width="1.7dp"
