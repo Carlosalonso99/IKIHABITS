@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class NuevoHabitoActivity extends ActivityBase {
+public class NuevoHabitoActivity extends BaseActivity {
 
     HabitoRepository habitoRep = HabitoRepository.getInstance(this);
 

@@ -1,16 +1,21 @@
 package com.example.controla_tus_habitos.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.example.controla_tus_habitos.R;
+import androidx.appcompat.widget.Toolbar;
 
-public class GraficaActivity extends AppCompatActivity {
+import com.example.controla_tus_habitos.R;
+import com.example.controla_tus_habitos.repository.HabitoRepository;
+
+public class GraficaActivity extends BaseActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grafica);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
     }
 }

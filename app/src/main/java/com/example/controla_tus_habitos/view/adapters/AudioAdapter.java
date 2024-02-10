@@ -64,7 +64,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
                 public void onClick(View view) {
                     // Llama a un método para reproducir el audio
 
-                    if(anteriorHolder != null){
+                    if(anteriorHolder != null && !holder.equals(anteriorHolder)){
                         pauseAudio(anteriorHolder);
                     }
                     if(!reproduciendo){

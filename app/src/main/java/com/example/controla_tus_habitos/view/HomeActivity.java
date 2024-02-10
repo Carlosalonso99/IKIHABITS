@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.view.Menu;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -22,7 +21,7 @@ import com.example.controla_tus_habitos.view.adapters.HabitoAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
-public class HomeActivity extends ActivityBase implements OnHabitoClickListener {
+public class HomeActivity extends BaseActivity implements OnHabitoClickListener {
 
     private RecyclerView recyclerView;
     private HabitoAdapter adapter;

@@ -36,7 +36,7 @@ import java.util.List;
 /**
  *
  */
-public class ActualizarHabitoActivity extends ActivityBase {
+public class ActualizarHabitoActivity extends BaseActivity {
 
     HabitoRepository habitoRep = HabitoRepository.getInstance(this);
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;

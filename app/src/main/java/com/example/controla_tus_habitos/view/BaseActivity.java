@@ -3,7 +3,6 @@ package com.example.controla_tus_habitos.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,13 +11,10 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.Toast;
 
 import com.example.controla_tus_habitos.R;
 
-public class ActivityBase extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +61,13 @@ public class ActivityBase extends AppCompatActivity {
 
         if (id == R.id.itemHome) {
             // Maneja el clic en el ítem de configuración aquí
-            Intent intent = new Intent(ActivityBase.this, HomeActivity.class);
+            Intent intent = new Intent(BaseActivity.this, HomeActivity.class);
             startActivity(intent);
             return true;
+        } else if (id == R.id.itemGraphic) {
+            Intent intent = new Intent(BaseActivity.this, GraficaActivity.class);
+            startActivity(intent);
         }
-
 
 
         return super.onOptionsItemSelected(item);

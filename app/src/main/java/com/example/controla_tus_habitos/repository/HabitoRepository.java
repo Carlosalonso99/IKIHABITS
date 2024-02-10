@@ -94,6 +94,28 @@ public class HabitoRepository {
 
     }
 
+    public float [] obtenerConteoHabitosCategoria() {
+        List<Habito> habitosList = obtenerTodosLosHabitos();
+        float[] stats = new float[4];
+        for (Habito h : habitosList) {
+            switch (h.getCategoria()) {
+                case GENERICO:
+                    stats[0] += 1;
+                    break;
+                case DEPORTE:
+                    stats[1] += 1;
+                    break;
+                case TRABAJO:
+                    stats[2] += 1;
+                    break;
+                case ALIMENTACION:
+                    stats[3] += 1;
+                    break;
+            }
+        }
+        return stats;
+    }
+
     /**
      * Gestiona la equivalendia entre el boleano y el dato real que se pasa a la bd
      * @param id
