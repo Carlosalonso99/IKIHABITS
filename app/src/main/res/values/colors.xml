@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="theme1">#96DFE6</color>
-    <color name="theme2">#59D2DD</color>
+    <color name="theme1">#68DDAE4D</color>
+    <color name="theme2">#9B8B6B</color>
     <color name="theme3">#4696DFE6</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

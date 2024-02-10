@@ -20,7 +20,7 @@ public class HabitoDbHelper extends SQLiteOpenHelper {
 
     private static HabitoDbHelper instance;
     private static final String DATABASE_NAME = "habitos.db";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
     final static String SQL_CREATE_HABITOS_TABLE =
             "CREATE TABLE " + HabitoContract.HabitoEntry.TABLE_NAME + " (" +
                     HabitoContract.HabitoEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -35,7 +35,9 @@ public class HabitoDbHelper extends SQLiteOpenHelper {
                     AudioContract.AudioEntry.COLUMN_NAME_HABITO_ID + " INTEGER," +
                     AudioContract.AudioEntry.COLUMN_NAME_AUDIO_PATH + " TEXT," +
                     "FOREIGN KEY (" + AudioContract.AudioEntry.COLUMN_NAME_HABITO_ID + ") REFERENCES " +
-                    HabitoContract.HabitoEntry.TABLE_NAME + " (" + HabitoContract.HabitoEntry._ID + "))";
+                    HabitoContract.HabitoEntry.TABLE_NAME + " (" + HabitoContract.HabitoEntry._ID + ") ON DELETE CASCADE)";
+    private static final String SQL_DELETE_AUDIOS_TABLE = "DROP TABLE IF EXISTS " + AudioContract.AudioEntry.TABLE_NAME;
+
 
 
 
@@ -74,7 +76,9 @@ public class HabitoDbHelper extends SQLiteOpenHelper {
             db.execSQL("ALTER TABLE " + HabitoContract.HabitoEntry.TABLE_NAME + " ADD COLUMN " + HabitoContract.HabitoEntry.COLUMN_NAME_CATEGORIA + " TEXT");
         }
         //En la 3,4y5 tuye un error
-        if(oldVersion < 6){
+        //En la 6 se me olvido el ON CASCADE para poder borrar habitos correctamente
+        if(oldVersion < 7){
+            db.execSQL(SQL_DELETE_AUDIOS_TABLE);
             db.execSQL(SQL_CREATE_AUDIOS_TABLE);
         }
 
@@ -92,6 +96,7 @@ public class HabitoDbHelper extends SQLiteOpenHelper {
             db.execSQL("PRAGMA foreign_keys=ON;");
         }
     }
+
 
 
     // CRUD

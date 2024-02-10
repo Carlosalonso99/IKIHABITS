@@ -19,7 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_play_arrow"
-        android:text="Play"/>
+        android:text="Play"
+        android:textColor="@color/black" />
 
 
 

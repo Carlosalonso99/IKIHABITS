@@ -94,6 +94,7 @@ public class HabitoAdapter extends RecyclerView.Adapter<HabitoAdapter.HabitoView
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
+                        listaHabitos = habitoRepository.obtenerTodosLosHabitos();
                         listener.onHabitoClick(listaHabitos.get(position));
                     }
                 }

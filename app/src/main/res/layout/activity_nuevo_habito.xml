@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".view.NuevoHabitoActivity">
 
 
@@ -47,22 +48,24 @@
         android:id="@+id/buttonGuardarHabito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="117dp"
+        android:layout_marginTop="44dp"
         android:text="@string/guardar"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.76"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switchCompletado" />
 
     <Switch
         android:id="@+id/switchCompletado"
-        style="@style/Base.Theme.Controla_tus_habitos"
-        android:layout_width="197dp"
+        style="@style/CardView"
+        android:layout_width="150dp"
         android:layout_height="64dp"
-        android:layout_marginTop="11dp"
-        android:switchTextAppearance="@style/Base.Theme.Controla_tus_habitos"
+        android:layout_marginTop="20dp"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
         android:text="Completado"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescripcionHabito" />
 
@@ -70,38 +73,40 @@
         android:id="@+id/spinnerCategoria"
         android:layout_width="207dp"
         android:layout_height="67dp"
-        android:layout_marginTop="19dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonGuardarHabito"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="23dp"
+        app:layout_constraintEnd_toStartOf="@+id/switchCompletado"
+        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchCompletado"
-        app:layout_constraintVertical_bias="0.14" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescripcionHabito" />
 
     <Button
         android:id="@+id/btnGrabar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="272dp"
         android:onClick="onGrabarClicked"
         android:text="Grabar"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spinnerCategoria"
         app:layout_constraintTop_toBottomOf="@+id/switchCompletado" />
 
     <TextView
         android:id="@+id/tvEstadoGrabacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="272dp"
+        android:layout_marginBottom="8dp"
         android:text="Estado: Inactivo"
         app:layout_constraintBottom_toTopOf="@+id/btnGrabar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spinnerCategoria" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAudios"
-        android:layout_width="415dp"
-        android:layout_height="278dp"
+        android:layout_width="418dp"
+        android:layout_height="312dp"
         android:layout_marginTop="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
