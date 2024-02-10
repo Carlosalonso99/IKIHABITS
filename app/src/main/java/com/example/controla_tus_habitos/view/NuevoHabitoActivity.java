@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class NuevoHabitoActivity extends AppCompatActivity {
+public class NuevoHabitoActivity extends ActivityBase {
 
     HabitoRepository habitoRep = HabitoRepository.getInstance(this);
 
@@ -51,11 +51,14 @@ public class NuevoHabitoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_RECORD_AUDIO_PERMISSION);
         }
 
         setContentView(R.layout.activity_nuevo_habito);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         Spinner spinnerCategoria = findViewById(R.id.spinnerCategoria);
         // Asume que CategoriaHabito es tu enum y tiene los valores SALUD, TRABAJO, ALIMENTACION

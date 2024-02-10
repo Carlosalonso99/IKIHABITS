@@ -19,7 +19,6 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHabitos"
         android:layout_marginTop="?attr/actionBarSize"

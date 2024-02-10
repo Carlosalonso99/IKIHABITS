@@ -6,22 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".view.NuevoHabitoActivity">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
     <EditText
         android:id="@+id/editTextTituloHabito"
-        android:layout_width="428dp"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
         android:hint="@string/titulo_habito"
+        android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
         android:id="@+id/editTextDescripcionHabito"
-        android:layout_width="416dp"
-        android:layout_height="77dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/descripcion_habito"
+        android:minHeight="80dp"
+        android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,9 +56,11 @@
 
     <Switch
         android:id="@+id/switchCompletado"
+        style="@style/Base.Theme.Controla_tus_habitos"
         android:layout_width="197dp"
         android:layout_height="64dp"
         android:layout_marginTop="11dp"
+        android:switchTextAppearance="@style/Base.Theme.Controla_tus_habitos"
         android:text="Completado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

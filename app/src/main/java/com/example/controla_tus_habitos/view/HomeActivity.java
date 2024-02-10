@@ -4,14 +4,13 @@ package com.example.controla_tus_habitos.view;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +22,7 @@ import com.example.controla_tus_habitos.view.adapters.HabitoAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity implements OnHabitoClickListener {
+public class HomeActivity extends ActivityBase implements OnHabitoClickListener {
 
     private RecyclerView recyclerView;
     private HabitoAdapter adapter;
@@ -33,6 +32,8 @@ public class HomeActivity extends AppCompatActivity implements OnHabitoClickList
     /**
      * Es una manera de gestionar la activiti para que se actualice bajo la llamada de NuevoHabitoActivity si todo sale bien
      */
+
+
     private final ActivityResultLauncher<Intent> nuevoHabitoLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -41,34 +42,14 @@ public class HomeActivity extends AppCompatActivity implements OnHabitoClickList
                 }
             });
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Infla el menú; esto añade ítems a la barra de acción si está presente.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.itemHome) {
-            // Maneja el clic en el ítem de configuración aquí
-            Toast.makeText(this, "Hola", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         habitoRep = HabitoRepository.getInstance(this);
 
         recyclerView = findViewById(R.id.rvHabitos);
@@ -101,6 +82,7 @@ public class HomeActivity extends AppCompatActivity implements OnHabitoClickList
         adapter = new HabitoAdapter(this, habitos, habitoRep, this);
         recyclerView.setAdapter(adapter);
     }
+
 
     @Override
     public void onHabitoClick(Habito habito) {

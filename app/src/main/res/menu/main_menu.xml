@@ -14,9 +14,4 @@
         android:orderInCategory="100"
         android:icon="@drawable/icono_configuracion"
         app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/itemCategorias"
-        android:title="@string/categorias"
-        android:orderInCategory="100"
-        />
 </menu>
