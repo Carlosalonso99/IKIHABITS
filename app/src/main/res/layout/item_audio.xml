@@ -18,6 +18,9 @@
         android:id="@+id/btnPlayAudio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:text="Play" />
+        android:drawableStart="@drawable/ic_play_arrow"
+        android:text="Play"/>
+
+
+
 </LinearLayout>

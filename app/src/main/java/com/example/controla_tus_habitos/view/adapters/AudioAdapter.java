@@ -1,11 +1,10 @@
 package com.example.controla_tus_habitos.view.adapters;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,6 +28,10 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
     private Context context;
     private List<Audio> listaAudios;
     private LayoutInflater inflater;
+    private boolean reproduciendo = false;
+    private MediaPlayer mediaPlayer;
+
+    AudioViewHolder anteriorHolder;
 
     // Constructor
     public AudioAdapter(Context context, List<Audio> listaAudios) {
@@ -43,6 +46,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
     @Override
     public AudioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.item_audio, parent, false);
+
         return new AudioViewHolder(itemView);
     }
 
@@ -53,11 +57,24 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
             String audioName = new File(audio.getAudioPath()).getName();
             holder.tvAudioName.setText(audioName);
 
+            Drawable playDrawable = ContextCompat.getDrawable(context, R.drawable.ic_play_arrow);
+            holder.btnPlayAudio.setCompoundDrawablesWithIntrinsicBounds(playDrawable, null, null, null);
             holder.btnPlayAudio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     // Llama a un método para reproducir el audio
-                    playAudio(audio.getAudioPath());
+
+                    if(anteriorHolder != null){
+                        pauseAudio(anteriorHolder);
+                    }
+                    if(!reproduciendo){
+                        playAudio(audio.getAudioPath(), holder);
+
+                    }else{
+                        pauseAudio(holder);
+                    }
+                    anteriorHolder = holder;
+
                 }
             });
         } else {
@@ -65,8 +82,25 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
             holder.btnPlayAudio.setEnabled(false); // Deshabilita el botón si no hay audio
         }
     }
-    private void playAudio(String audioPath) {
-        MediaPlayer mediaPlayer = new MediaPlayer();
+    public void pauseAudio(AudioViewHolder holder) {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+            reproduciendo = false;
+            Drawable playDrawable = ContextCompat.getDrawable(context, R.drawable.ic_play_arrow);
+            holder.btnPlayAudio.setCompoundDrawablesWithIntrinsicBounds(playDrawable, null, null, null);
+            holder.btnPlayAudio.setText("Play");
+            Log.d("MediaPlayer", "Playback paused");
+
+        }
+    }
+    private void playAudio(String audioPath, AudioViewHolder holder) {
+        if (mediaPlayer != null) {
+            if(mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.release();
+        }
+        mediaPlayer = new MediaPlayer();
         try {
             mediaPlayer.setDataSource(audioPath);
             mediaPlayer.prepareAsync();
@@ -75,6 +109,10 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
                 public void onPrepared(MediaPlayer mp) {
                     Log.d("MediaPlayer", "Prepared and starting playback");
                     mp.start();
+                    reproduciendo = true;
+                    Drawable playDrawable = ContextCompat.getDrawable(context, R.drawable.ic_pause);
+                    holder.btnPlayAudio.setCompoundDrawablesWithIntrinsicBounds(playDrawable, null, null, null);
+                    holder.btnPlayAudio.setText("Pause");
                     Log.d("MediaPlayer", "Playing");
                 }
             });
@@ -84,21 +122,36 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     Log.d("MediaPlayer", "Playback completed");
-                    mediaPlayer.release();
+                    mp.release();
+                    mediaPlayer = null;
+                    reproduciendo = false;
+                    Drawable playDrawable = ContextCompat.getDrawable(context, R.drawable.ic_play_arrow);
+                    holder.btnPlayAudio.setCompoundDrawablesWithIntrinsicBounds(playDrawable, null, null, null);
+                    holder.btnPlayAudio.setText("Play");;
                 }
             });
             mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
                 @Override
                 public boolean onError(MediaPlayer mp, int what, int extra) {
-                    Toast.makeText(context, "no se pudo reproducir" + what, Toast.LENGTH_SHORT).show();;
+                    Toast.makeText(context, "No se pudo reproducir. Error: " + what, Toast.LENGTH_SHORT).show();
+                    mp.release(); // Liberar el reproductor si ocurre un error
+                    mediaPlayer = null;
+                    reproduciendo = false;
+                    Drawable playDrawable = ContextCompat.getDrawable(context, R.drawable.ic_play_arrow);
+                    holder.btnPlayAudio.setCompoundDrawablesWithIntrinsicBounds(playDrawable, null, null, null);
+                    holder.btnPlayAudio.setText("Play");
                     return true;
                 }
             });
         } catch (IOException e) {
             e.printStackTrace();
-
+            if (mediaPlayer != null) {
+                mediaPlayer.release(); // Asegúrate de liberar el reproductor si ocurre una excepción
+                mediaPlayer = null;
+            }
         }
     }
+
 
     @Override
     public int getItemCount() {
@@ -114,6 +167,9 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
             super(itemView);
             tvAudioName = itemView.findViewById(R.id.tvAudioName);
             btnPlayAudio = itemView.findViewById(R.id.btnPlayAudio);
+
+
+
         }
     }
 }
