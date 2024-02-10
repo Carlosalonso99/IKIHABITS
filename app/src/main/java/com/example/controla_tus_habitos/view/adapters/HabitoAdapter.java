@@ -20,7 +20,7 @@ import java.util.List;
 
 public class HabitoAdapter extends RecyclerView.Adapter<HabitoAdapter.HabitoViewHolder> {
 
-    private static List<Habito> listaHabitos; // Asume que tienes una clase Habito
+    private static List<Habito> listaHabitos;
     private LayoutInflater inflater;
     private static HabitoRepository habitoRepository;
     private OnHabitoClickListener listener;
@@ -87,12 +87,6 @@ public class HabitoAdapter extends RecyclerView.Adapter<HabitoAdapter.HabitoView
             descripcion = itemView.findViewById(R.id.tvHabitoDescripcion);
             checkBoxCompletado = itemView.findViewById(R.id.checkBoxCompletado);
             iconoCategoria = itemView.findViewById(R.id.iconoCategoria);
-            /**
-             * TODO: gestionar color por categoria
-             */
-
-
-
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

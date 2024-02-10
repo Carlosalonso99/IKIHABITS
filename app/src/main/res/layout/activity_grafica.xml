@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <com.example.controla_tus_habitos.view.componentes.SimpleBarChartView
+    <com.example.controla_tus_habitos.view.componentes.GraficaStats
         android:id="@+id/simpleBarChart"
         android:layout_width="match_parent"
         android:layout_height="196dp"

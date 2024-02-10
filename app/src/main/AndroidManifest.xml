@@ -23,9 +23,6 @@
             android:name=".view.BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".view.BaseActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.HomeActivity"
             android:exported="false" />
         <activity

@@ -4,7 +4,7 @@
     <string name="agregar_habito">Agregar Hábito</string>
     <string name="titulo_habito">Título Hábito</string>
     <string name="descripcion_habito">Descripcion Hábito</string>
-    <string name="guardar">Guardar Hábito</string>
+    <string name="guardar">Guardar</string>
     <string name="home">Home</string>
     <string name="categorias">Categorias</string>
     <string name="title_activity_login">LoginActivity</string>

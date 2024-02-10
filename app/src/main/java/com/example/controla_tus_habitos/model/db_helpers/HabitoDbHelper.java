@@ -58,7 +58,7 @@ public class HabitoDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_HABITOS_TABLE);
-        db.execSQL(SQL_CREATE_HABITOS_TABLE);
+        db.execSQL(SQL_CREATE_AUDIOS_TABLE);
     }
 
     /**

@@ -1,9 +1,12 @@
 package com.example.controla_tus_habitos.view.adapters;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.util.Log;
@@ -18,6 +21,7 @@ import androidx.annotation.NonNull;
 
 import com.example.controla_tus_habitos.R;
 import com.example.controla_tus_habitos.model.entities_pojos.audio.Audio;
+import com.example.controla_tus_habitos.view.ActualizarHabitoActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,10 +46,13 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
 
 
 
+
     @NonNull
     @Override
     public AudioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.item_audio, parent, false);
+        // Verifica si tienes el permiso de lectura del almacenamiento externo
+
 
         return new AudioViewHolder(itemView);
     }
@@ -62,6 +69,8 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
             holder.btnPlayAudio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+
                     // Llama a un método para reproducir el audio
 
                     if(anteriorHolder != null && !holder.equals(anteriorHolder)){

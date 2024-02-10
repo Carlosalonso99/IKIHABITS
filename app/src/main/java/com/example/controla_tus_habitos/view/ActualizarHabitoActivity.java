@@ -40,6 +40,8 @@ public class ActualizarHabitoActivity extends BaseActivity {
 
     HabitoRepository habitoRep = HabitoRepository.getInstance(this);
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
+    private static final int PERMISSION_REQUEST_STORAGE = 100;
+
     private boolean isRecording = false; // Estado de la grabación
     private MediaRecorder mediaRecorder;
     private List<String> audioFilePath = new LinkedList<String>();
@@ -56,7 +58,16 @@ public class ActualizarHabitoActivity extends BaseActivity {
                 Toast.makeText(this, "Permiso de grabación de audio denegado", Toast.LENGTH_SHORT).show();
             }
         }
+        if (requestCode == PERMISSION_REQUEST_STORAGE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+            } else {
+
+                Toast.makeText(this, "Permiso denegado para leer el almacenamiento", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
+
 
 
     @Override
@@ -68,6 +79,13 @@ public class ActualizarHabitoActivity extends BaseActivity {
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_RECORD_AUDIO_PERMISSION);
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Si no tienes permiso, solicítalo al usuario
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    PERMISSION_REQUEST_STORAGE);
         }
 
 
@@ -138,7 +156,7 @@ public class ActualizarHabitoActivity extends BaseActivity {
                 mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
                 // Define el archivo de salida
-                String path = getExternalFilesDir(null).getAbsolutePath() + "/audio_" + System.currentTimeMillis() + ".3gp";
+                String path = getExternalFilesDir(null).getAbsolutePath() + "/audio_" + System.currentTimeMillis() + ".mp3";
                 audioFilePath.add(path);
                 mediaRecorder.setOutputFile(path);
 
