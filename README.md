@@ -15,7 +15,7 @@ Funcionamiento Offline: La aplicación es completamente funcional sin necesidad 
 Para iniciar con "IKIHABITS", sigue estos pasos:
 
 Clona el repositorio en tu entorno local utilizando:
-`https://github.com/Carlosalonso99/IKIHABITS.git`
+`gh repo clone Carlosalonso99/IKIHABITS`
 ### Abre el proyecto clonado con Android Studio.
 Ejecuta el proyecto en un emulador Android o en un dispositivo real para ver la aplicación en acción.
 Patrones de Arquitectura y Diseño
