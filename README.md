@@ -15,7 +15,7 @@ Funcionamiento Offline: La aplicación es completamente funcional sin necesidad 
 Para iniciar con "IKIHABITS", sigue estos pasos:
 
 Clona el repositorio en tu entorno local utilizando:
-`[git clone https://github.com/tuUsuario/controla-tus-habitos.git](https://github.com/Carlosalonso99/IKIHABITS.git)`
+`git clone https://github.com/tuUsuario/controla-tus-habitos.git`
 ### Abre el proyecto clonado con Android Studio.
 Ejecuta el proyecto en un emulador Android o en un dispositivo real para ver la aplicación en acción.
 Patrones de Arquitectura y Diseño
