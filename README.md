@@ -15,16 +15,14 @@ Funcionamiento Offline: La aplicación es completamente funcional sin necesidad 
 Para iniciar con "IKIHABITS", sigue estos pasos:
 
 Clona el repositorio en tu entorno local utilizando:
-
-bash
-git clone https://github.com/tuUsuario/controla-tus-habitos.git
-Abre el proyecto clonado con Android Studio.
+`git clone https://github.com/tuUsuario/controla-tus-habitos.git`
+### Abre el proyecto clonado con Android Studio.
 Ejecuta el proyecto en un emulador Android o en un dispositivo real para ver la aplicación en acción.
 Patrones de Arquitectura y Diseño
 En este proyecto, se ha hecho uso del patrón de arquitectura MVC (Modelo-Vista-Controlador) para separar la lógica de negocio de la interfaz de usuario, facilitando así el mantenimiento y la escalabilidad de la aplicación. Además, se han implementado prácticas de diseño y programación orientada a objetos para mejorar la estructura del código.
 
-Guía Rápida de Uso
+## Guía Rápida de Uso
 Una vez iniciada la aplicación, podrás ver una lista de tus hábitos actuales. Para añadir un nuevo hábito, utiliza el botón flotante situado en la parte inferior derecha. En cada hábito, tienes la opción de añadir notas de voz o editar detalles como el título y la descripción.
 
-Conocimientos Aprendidos
+## Conocimientos Aprendidos
 A lo largo del desarrollo de este proyecto, he reforzado mis conocimientos en el desarrollo de aplicaciones Android utilizando Java, el manejo de bases de datos SQLite para el almacenamiento local, y la importancia de una buena arquitectura de software. También he aprendido a utilizar Git para el control de versiones, lo que me ha permitido gestionar eficazmente las diferentes etapas del desarrollo de la aplicación.
